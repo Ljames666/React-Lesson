@@ -11,14 +11,15 @@ const StyledHeader = styled.div`
 
   h1 {
     margin-top: 8rem;
-    font-size: 2.5rem;
+    font-size: 2rem;
+    font-weight: bold;
     color: #ffff;
     transition: font-size 5s, color 5s, transform 5s;
 
     :hover {
       font-size: 3rem;
-      color: #535356;
-      transform: rotate(360deg);
+      color: #aaaaae;
+      transform: rotateY(360deg);
     }
   }
 `;
