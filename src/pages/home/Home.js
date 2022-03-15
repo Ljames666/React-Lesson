@@ -81,6 +81,7 @@ function Home() {
           variant="filled"
           color="success"
           focused
+          value={data.name}
           onChange={handleChange}
           fullWidth
           sx={{
@@ -95,6 +96,7 @@ function Home() {
           variant="filled"
           color="success"
           focused
+          value={data.phone}
           onChange={handleChange}
           fullWidth
           sx={{
@@ -109,6 +111,7 @@ function Home() {
           variant="filled"
           color="success"
           focused
+          value={data.email}
           onChange={handleChange}
           fullWidth
           sx={{
@@ -123,6 +126,7 @@ function Home() {
           variant="filled"
           color="success"
           focused
+          value={data.city}
           onChange={handleChange}
           fullWidth
           sx={{
