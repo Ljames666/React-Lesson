@@ -83,6 +83,11 @@ function Home() {
           focused
           onChange={handleChange}
           fullWidth
+          sx={{
+            '& .css-4yhz0i-MuiInputBase-root-MuiFilledInput-root': {
+              color: '#25e668',
+            },
+          }}
         />
         <TextField
           id="phone"
@@ -92,6 +97,11 @@ function Home() {
           focused
           onChange={handleChange}
           fullWidth
+          sx={{
+            '& .css-4yhz0i-MuiInputBase-root-MuiFilledInput-root': {
+              color: '#25e668',
+            },
+          }}
         />
         <TextField
           id="email"
@@ -101,6 +111,11 @@ function Home() {
           focused
           onChange={handleChange}
           fullWidth
+          sx={{
+            '& .css-4yhz0i-MuiInputBase-root-MuiFilledInput-root': {
+              color: '#25e668',
+            },
+          }}
         />
         <TextField
           id="city"
@@ -110,6 +125,11 @@ function Home() {
           focused
           onChange={handleChange}
           fullWidth
+          sx={{
+            '& .css-4yhz0i-MuiInputBase-root-MuiFilledInput-root': {
+              color: '#25e668',
+            },
+          }}
         />
 
         <Button onClick={handleClick} variant="outlined" color="success">

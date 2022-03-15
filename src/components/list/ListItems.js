@@ -23,13 +23,13 @@ export default function ListItem() {
         return (
           <Card key={item.name} sx={{ margin: '15px' }}>
             <CardContent>
-              <Table sx={{ minWidth: 450 }} size="small" aria-label="a dense table">
+              <Table sx={{ minWidth: 300 }} size="small" aria-label="a dense table">
                 <TableHead>
                   <TableRow>
                     <TableCell>Name</TableCell>
-                    <TableCell align="right">Phone</TableCell>
-                    <TableCell align="right">Email</TableCell>
-                    <TableCell align="right">City</TableCell>
+                    <TableCell align="center">Phone</TableCell>
+                    <TableCell align="center">Email</TableCell>
+                    <TableCell align="center">City</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -37,15 +37,15 @@ export default function ListItem() {
                     <TableCell component="th" scope="row">
                       {item.name}
                     </TableCell>
-                    <TableCell align="right">{item.phone}</TableCell>
-                    <TableCell align="right">{item.email}</TableCell>
-                    <TableCell align="right">{item.city}</TableCell>
+                    <TableCell align="center">{item.phone}</TableCell>
+                    <TableCell align="center">{item.email}</TableCell>
+                    <TableCell align="center">{item.city}</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
             </CardContent>
             <CardActions>
-              <Button> Excluir</Button>
+              <Button color="success"> Excluir</Button>
             </CardActions>
           </Card>
         );

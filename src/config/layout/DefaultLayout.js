@@ -11,7 +11,7 @@ function DefaultLayout({ children }) {
           <Grid item xs={12} md={4} sx={{ height: '100%', overflowY: 'auto', padding: '0 10px' }}>
             <ListItem />
           </Grid>
-          <Grid item xs={12} md={4} sx={{ marginTop: '100px' }}>
+          <Grid item xs={12} md={4} sx={{ marginTop: '1rem' }}>
             {children}
           </Grid>
           <Grid item xs={12} md={4} sx={{ height: '100%', overflowY: 'auto', padding: '0 10px' }}>

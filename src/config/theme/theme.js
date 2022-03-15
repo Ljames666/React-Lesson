@@ -17,6 +17,7 @@ export default createTheme(
         main: 'rgba(0,0,0,50%)',
       },
     },
+
     MuiCssBaseline: {
       styleOverrides: {
         root: {
@@ -32,3 +33,5 @@ export default createTheme(
   },
   ptBR
 );
+
+/* <div class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorSuccess MuiInputBase-fullWidth Mui-focused MuiInputBase-formControl css-1hws7zw"><input aria-invalid="false" id="phone" type="text" class="MuiFilledInput-input MuiInputBase-input css-2bxn45" value=""></div> */
