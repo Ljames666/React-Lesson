@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Typography from '@mui/material/Typography';
 
 export default function ListJson() {

@@ -1,6 +1,4 @@
 import { Box, Typography, Link } from '@mui/material';
-import { RiReactjsLine } from 'react-icons/ri';
-import { GiMeatHook } from 'react-icons/gi';
 
 function Footer() {
   return (

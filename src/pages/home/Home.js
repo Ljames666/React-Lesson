@@ -1,4 +1,3 @@
-import { Grid } from '@mui/material';
 import TextField from '@mui/material/TextField';
 
 import Stack from '@mui/material/Stack';
@@ -7,8 +6,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import HomeMain from '../../components/main/Main';
-import ListItem from '../../components/list/ListItems';
-import ListJson from '../../components/listJson/ListJson';
+
 import AwesomeTitle from '../../components/title/AwesomeTitle';
 import { setNumber } from '../../store/ListPhoneSlice';
 
