@@ -1,18 +1,16 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
-// import theme from './config/theme/Theme';
-
-// import Routes from './routes/Router';
+import theme from './config/theme/theme';
+import Routes from './routes/Router';
 
 import DefaultLayout from './config/layout/DefaultLayout';
 
 function App() {
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <DefaultLayout>
-        oi
-        {/* <Routes /> */}
+        <Routes />
       </DefaultLayout>
     </ThemeProvider>
   );

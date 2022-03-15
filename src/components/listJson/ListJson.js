@@ -1,7 +1,12 @@
-
-
+import { useDispatch, useSelector } from 'react-redux';
+import Typography from '@mui/material/Typography';
 
 export default function ListJson() {
-
-    return <div/>
+  const data = useSelector((state) => state.listPhone);
+  return (
+    <>
+      <Typography sx={{ marginTop: '15px' }}>JSON</Typography>
+      <pre>{JSON.stringify(data, null, 4)}</pre>
+    </>
+  );
 }
