@@ -27,6 +27,10 @@ export default createTheme(
         body: {
           height: '100vh',
           width: '100vw',
+          color: '#25e668',
+        },
+        'div .css-1hws7zw': {
+          color: '#25e668',
         },
       },
     },
