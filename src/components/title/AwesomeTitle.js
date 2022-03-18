@@ -26,7 +26,7 @@ export default function AwesomeTitle() {
       size="50"
       bold={false}
     >
-      What do I Eat?
+      what to eat?
     </StyledH1>
   );
 }
