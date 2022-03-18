@@ -12,8 +12,7 @@ import Typography from '@mui/material/Typography';
 
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
-
-import LunchDiningIcon from '@mui/icons-material/LunchDining';
+import WineBarIcon from '@mui/icons-material/WineBar';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -32,7 +31,9 @@ export default function ListItem({ data }) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
   if (!data) return <div />;
+
   return (
     <Card
       elevation={8}
@@ -45,28 +46,33 @@ export default function ListItem({ data }) {
       }}
     >
       <CardHeader
-        avatar={<Avatar aria-label="recipe" src={data.strMealThumb} />}
+        avatar={<Avatar aria-label="recipe" src={data.strDrinkThumb} />}
         action={
-          <IconButton aria-label="settings" href={data.strSource} target="_blank">
-            <LunchDiningIcon sx={{ color: '#5BC0BE' }} />
+          <IconButton aria-label="settings" href="https://www.thecocktaildb.com/" target="_blank">
+            <WineBarIcon sx={{ color: '#5BC0BE' }} />
           </IconButton>
         }
-        title={data.strMeal}
+        title={data.strDrink}
         sx={{ '.css-et1ao3-MuiTypography-root': { fontSize: '2rem' } }}
       />
-      <CardMedia
-        component="iframe"
-        height="250"
-        image={`https://www.youtube.com/embed/${data.strYoutube.substr(32, 11)}`}
-        alt={data.strMeal}
-      />
+      <CardMedia component="img" height="250" image={data.strDrinkThumb} alt={data.strMeal} />
       <CardContent
         sx={{
           color: '#5BC0BE',
-          maxHeight: 149,
+          maxHeight: 152,
           overflowY: 'auto',
         }}
       >
+        <Typography variant="body2" color="color: '#5BC0BE'">
+          <p>{data.strInstructions} </p>
+          <p>
+            Type:{data.strAlcoholic}
+            <br />
+            Category:{data.strCategory}
+            <br /> Glass:{data.strGlass}
+          </p>
+        </Typography>
+
         <Typography variant="h6" sx={{ margin: '10px 0' }}>
           Ingredients and measurements:
         </Typography>
@@ -116,12 +122,6 @@ export default function ListItem({ data }) {
             <p>{data.strMeasure19 ? data.strMeasure19 : null}</p>
             <p>{data.strMeasure20 ? data.strMeasure20 : null}</p>
           </div>
-        </Typography>
-        <Typography variant="h6" sx={{ margin: '10px 0' }}>
-          Method:
-        </Typography>
-        <Typography variant="body2" color="color: '#5BC0BE'">
-          {data.strInstructions}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

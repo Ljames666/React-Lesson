@@ -9,7 +9,7 @@ const makeShadow = () => {
     shadow += ` 
     ${((24 / 3) * index).toFixed(0)}px 
     ${((18 / 3) * index).toFixed(0)}px 
-    4px rgba(205, 239, 197, 1) ${index !== 3 ? ',' : ' '} `;
+    4px rgba(91, 192, 190, 1) ${index !== 3 ? ',' : ' '} `;
   }
   return shadow;
 };
@@ -19,14 +19,14 @@ export default function AwesomeTitle() {
     <StyledH1
       id="awesomeTitle"
       shadow={makeShadow()}
-      textColor="rgba(72, 186, 76, 1)"
+      textColor="rgba(111, 255, 233, 1)"
       textTransform="uppercase"
       align="center"
       fontFamily="Fredoka"
-      size="69"
+      size="50"
       bold={false}
     >
-      Phone list
+      What do I Eat?
     </StyledH1>
   );
 }

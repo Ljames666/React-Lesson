@@ -17,23 +17,6 @@ export default createTheme(
         main: 'rgba(0,0,0,50%)',
       },
     },
-
-    MuiCssBaseline: {
-      styleOverrides: {
-        root: {
-          margin: 0,
-          padding: 0,
-        },
-        body: {
-          height: '100vh',
-          width: '100vw',
-          color: '#25e668',
-        },
-        'div .css-1hws7zw': {
-          color: '#25e668',
-        },
-      },
-    },
   },
   ptBR
 );

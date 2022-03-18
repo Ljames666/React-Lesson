@@ -1,26 +1,16 @@
 import { Grid } from '@mui/material';
-import ListItem from '../../components/list/ListItems';
+
 import MyFooter from '../../components/footer/Footer';
-import ListJson from '../../components/listJson/ListJson';
 
 function DefaultLayout({ children }) {
   return (
-    <div style={{ height: '100vh', backgroundColor: '#080b0d', color: '#25e668' }}>
-      <div style={{ height: '90%' }}>
-        <Grid container sx={{ height: '90%' }}>
-          <Grid item xs={12} md={4} sx={{ height: '100%', overflowY: 'auto', padding: '0 10px' }}>
-            <ListItem />
-          </Grid>
-          <Grid item xs={12} md={4} sx={{ marginTop: '1rem' }}>
-            {children}
-          </Grid>
-          <Grid item xs={12} md={4} sx={{ height: '100%', overflowY: 'auto', padding: '0 10px' }}>
-            <ListJson />
-          </Grid>
+    <div style={{ minHeight: '100vh', backgroundColor: '#1c2541', color: '#25e668' }}>
+      <div>
+        <Grid container spacing={3}>
+          {children}
         </Grid>
       </div>
-
-      <div>
+      <div style={{ height: '10%', bottom: '0px' }}>
         <MyFooter />
       </div>
     </div>

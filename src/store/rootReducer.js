@@ -1,14 +1,16 @@
-import { combineReducers } from '@reduxjs/toolkit';
-import ListPhone from './ListPhoneSlice';
+import { combineReducers } from 'redux';
+import RandomFoodReducer from './RandomFoodSlice';
+import CocktailsReducer from './RandomCocktailsSlice';
 
 // import theme from './ThemeSlice';
 
-const createReducer = () => (state, action) => {
+const rootReducer = () => (state, action) => {
   const combinedReducer = combineReducers({
-    ListPhone,
+    randomFood: RandomFoodReducer,
+    cocktails: CocktailsReducer,
   });
 
   return combinedReducer(state, action);
 };
 
-export default createReducer;
+export default rootReducer;

@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import ListPhoneReducer from './ListPhoneSlice';
+import RandomFoodReducer from './RandomFoodSlice';
+import CocktailsReducer from './RandomCocktailsSlice';
 
 const store = configureStore({
   reducer: {
-    listPhone: ListPhoneReducer,
+    randomFood: RandomFoodReducer,
+    cocktails: CocktailsReducer,
   },
 });
 export default store;

@@ -1,146 +1,73 @@
-import TextField from '@mui/material/TextField';
-
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import Typography from '@mui/material/Typography';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import HomeMain from '../../components/main/Main';
+import { fetchRecipes } from '../../store/RandomFoodSlice';
+import { fetchCocktails } from '../../store/RandomCocktailsSlice';
+import FoodRecipe from '../../components/list/ListItems';
+import CockTailRecipe from '../../components/listCock/ListCock';
 
 import AwesomeTitle from '../../components/title/AwesomeTitle';
-import { setNumber } from '../../store/ListPhoneSlice';
 
 function Home() {
   const dispatch = useDispatch();
 
-  const [data, setData] = useState({
-    name: undefined,
-    phone: undefined,
-    email: undefined,
-    city: undefined,
-  });
+  const foodRedux = useSelector((state) => state.randomFood);
+  const cocktailRedux = useSelector((state) => state.cocktails);
 
-  function handleClick() {
-    dispatch(setNumber(data));
-    setData({
-      name: '',
-      phone: '',
-      email: '',
-      city: '',
-    });
-  }
+  const [food, setFood] = useState(undefined);
+  const [cocktail, setCocktail] = useState(undefined);
 
-  function handleChange(e) {
-    switch (e.target.id) {
-      case 'name':
-        setData({
-          name: e.target.value,
-          phone: data.phone,
-          email: data.email,
-          city: data.city,
-        });
-        break;
-      case 'phone':
-        setData({
-          name: data.name,
-          phone: e.target.value,
-          email: data.email,
-          city: data.city,
-        });
-        break;
-      case 'email':
-        setData({
-          name: data.name,
-          phone: data.phone,
-          email: e.target.value,
-          city: data.city,
-        });
-        break;
-      case 'city':
-        setData({
-          name: data.name,
-          phone: data.phone,
-          email: data.email,
-          city: e.target.value,
-        });
-        break;
-      default:
-        break;
-    }
-  }
+  useEffect(() => {
+    dispatch(fetchRecipes());
+    dispatch(fetchCocktails());
+  }, []);
 
-  console.log('data======', data);
+  const random = () => Math.floor(Math.random() * (24 - 0)) + 0;
+
+  const handleClick = () => {
+    const number = random();
+    setFood(foodRedux.recipes[number]);
+    setCocktail(cocktailRedux.cocktails[number]);
+  };
+  console.log('data', food, cocktail);
   return (
-    <HomeMain>
-      <AwesomeTitle />
+    <>
+      <HomeMain xs={12} md={4}>
+        <div
+          style={{
+            marginLeft: '10px',
+            minHeight: 400,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+          }}
+        >
+          <div>
+            <AwesomeTitle />
+          </div>
 
-      <Stack spacing={2} direction="column" sx={{ margin: '0 10px' }}>
-        <TextField
-          id="name"
-          label="Name:"
-          variant="filled"
-          color="success"
-          focused
-          value={data.name}
-          onChange={handleChange}
-          fullWidth
-          sx={{
-            '& .css-4yhz0i-MuiInputBase-root-MuiFilledInput-root': {
-              color: '#25e668',
-            },
-          }}
-        />
-        <TextField
-          id="phone"
-          label="Phone Number:"
-          variant="filled"
-          color="success"
-          focused
-          value={data.phone}
-          onChange={handleChange}
-          fullWidth
-          sx={{
-            '& .css-4yhz0i-MuiInputBase-root-MuiFilledInput-root': {
-              color: '#25e668',
-            },
-          }}
-        />
-        <TextField
-          id="email"
-          label="E-mail"
-          variant="filled"
-          color="success"
-          focused
-          value={data.email}
-          onChange={handleChange}
-          fullWidth
-          sx={{
-            '& .css-4yhz0i-MuiInputBase-root-MuiFilledInput-root': {
-              color: '#25e668',
-            },
-          }}
-        />
-        <TextField
-          id="city"
-          label="City:"
-          variant="filled"
-          color="success"
-          focused
-          value={data.city}
-          onChange={handleChange}
-          fullWidth
-          sx={{
-            '& .css-4yhz0i-MuiInputBase-root-MuiFilledInput-root': {
-              color: '#25e668',
-            },
-          }}
-        />
+          <Typography style={{ color: '#6fffe9' }}>Let us suggest your food and drink </Typography>
+          <Button
+            variant="outlined"
+            style={{ color: '#6fffe9', border: '1px solid #6fffe9 ' }}
+            onClick={handleClick}
+          >
+            click here
+          </Button>
+        </div>
+      </HomeMain>
 
-        <Button onClick={handleClick} variant="outlined" color="success">
-          SAVE
-        </Button>
-      </Stack>
-    </HomeMain>
+      <HomeMain xs={12} md={5}>
+        <FoodRecipe data={food} />
+      </HomeMain>
+      <HomeMain xs={12} md={5}>
+        <CockTailRecipe data={cocktail} />
+      </HomeMain>
+    </>
   );
 }
 
