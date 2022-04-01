@@ -1,16 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 
-const initialState = [];
+const adapter = createEntityAdapter({
+  selectId: (list) => list.id,
+});
+
+export const { selectAll, selectById } = adapter.getSelectors((state) => state.listPhone);
+
+const initialState = adapter.getInitialState();
 
 const slice = createSlice({
-  name: 'ListPhone',
+  name: 'listPhone',
   initialState,
   reducers: {
-    setNumber: (state, action) => [...state, action.payload],
-
-    removeNumber: (state, action) => state.filter((phone) => phone.name !== action.payload.name),
+    addContact: adapter.addOne,
+    updateContact: adapter.updateOne,
+    removeContact: adapter.removeOne,
+    resetAllContact: adapter.removeAll,
   },
 });
 
-export const { setNumber, removeNumber } = slice.actions;
+export const { addContact, updateContact, removeContact, resetAllContact } = slice.actions;
 export default slice.reducer;

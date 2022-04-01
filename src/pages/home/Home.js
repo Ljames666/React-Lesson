@@ -2,87 +2,74 @@ import TextField from '@mui/material/TextField';
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { v4 } from 'uuid';
 import HomeMain from '../../components/main/Main';
 
 import AwesomeTitle from '../../components/title/AwesomeTitle';
-import { setNumber } from '../../store/ListPhoneSlice';
+import { addContact, resetAllContact } from '../../store/ListPhoneSlice';
+import { fecthGeoLocationIp, geoLocationIpSelector } from '../../store/geoLocIpSlice';
+import { fecthVerifyPhone, phoneSelector } from '../../store/verifyPhoneSlice';
+import { fecthSeachCep, seachCepSelector } from '../../store/seachCepSlice';
 
 function Home() {
   const dispatch = useDispatch();
 
-  const [data, setData] = useState({
-    name: undefined,
-    phone: undefined,
-    email: undefined,
-    city: undefined,
-  });
+  const geoLocationIpRedux = useSelector(geoLocationIpSelector);
+  const phoneRedux = useSelector(phoneSelector);
+  const cepRedux = useSelector(seachCepSelector);
 
-  function handleClick() {
-    dispatch(setNumber(data));
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [cep, setCep] = useState('');
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    dispatch(fecthGeoLocationIp());
+  }, []);
+
+  useEffect(() => {
+    dispatch(fecthVerifyPhone(phone));
+    dispatch(fecthSeachCep(cep));
+  }, [phone, cep]);
+
+  useEffect(() => {
     setData({
-      name: '',
-      phone: '',
-      email: '',
-      city: '',
+      id: v4(),
+      name,
+      phone: phoneRedux,
+      email,
+      cep: cepRedux,
     });
+  }, [phoneRedux, name, email, cepRedux]);
+
+  function handleClickSave() {
+    dispatch(addContact(data));
+    setName('');
+    setPhone('');
+    setEmail('');
+    setCep('');
+  }
+  function handleClickRemove() {
+    dispatch(resetAllContact());
   }
 
-  function handleChange(e) {
-    switch (e.target.id) {
-      case 'name':
-        setData({
-          name: e.target.value,
-          phone: data.phone,
-          email: data.email,
-          city: data.city,
-        });
-        break;
-      case 'phone':
-        setData({
-          name: data.name,
-          phone: e.target.value,
-          email: data.email,
-          city: data.city,
-        });
-        break;
-      case 'email':
-        setData({
-          name: data.name,
-          phone: data.phone,
-          email: e.target.value,
-          city: data.city,
-        });
-        break;
-      case 'city':
-        setData({
-          name: data.name,
-          phone: data.phone,
-          email: data.email,
-          city: e.target.value,
-        });
-        break;
-      default:
-        break;
-    }
-  }
-
-  console.log('data======', data);
   return (
     <HomeMain>
       <AwesomeTitle />
 
-      <Stack spacing={2} direction="column" sx={{ margin: '0 10px' }}>
+      <Stack spacing={1} direction="column" sx={{ margin: '0 10px' }}>
         <TextField
           id="name"
           label="Name:"
           variant="filled"
           color="success"
           focused
-          value={data.name}
-          onChange={handleChange}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           fullWidth
           sx={{
             '& .css-4yhz0i-MuiInputBase-root-MuiFilledInput-root': {
@@ -96,8 +83,8 @@ function Home() {
           variant="filled"
           color="success"
           focused
-          value={data.phone}
-          onChange={handleChange}
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
           fullWidth
           sx={{
             '& .css-4yhz0i-MuiInputBase-root-MuiFilledInput-root': {
@@ -111,8 +98,8 @@ function Home() {
           variant="filled"
           color="success"
           focused
-          value={data.email}
-          onChange={handleChange}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           fullWidth
           sx={{
             '& .css-4yhz0i-MuiInputBase-root-MuiFilledInput-root': {
@@ -121,13 +108,13 @@ function Home() {
           }}
         />
         <TextField
-          id="city"
-          label="City:"
+          id="cep"
+          label="Zip-code:"
           variant="filled"
           color="success"
           focused
-          value={data.city}
-          onChange={handleChange}
+          value={cep}
+          onChange={(e) => setCep(e.target.value)}
           fullWidth
           sx={{
             '& .css-4yhz0i-MuiInputBase-root-MuiFilledInput-root': {
@@ -136,8 +123,11 @@ function Home() {
           }}
         />
 
-        <Button onClick={handleClick} variant="outlined" color="success">
+        <Button onClick={handleClickSave} variant="outlined" color="success">
           SAVE
+        </Button>
+        <Button onClick={handleClickRemove} variant="outlined" color="error">
+          RESET ALL PHONE LIST
         </Button>
       </Stack>
     </HomeMain>

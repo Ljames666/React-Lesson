@@ -23,7 +23,7 @@ export default function AwesomeTitle() {
       textTransform="uppercase"
       align="center"
       fontFamily="Fredoka"
-      size="69"
+      size="59"
       bold={false}
     >
       Phone list
